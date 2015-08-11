@@ -1,0 +1,9 @@
+# Devstack settings
+
+# We have to add hdfs to enabled services for screen_it to work
+enable_service hdfs
+
+# enable HDFS manila backend
+
+# Below are HDFS specific settings, with their defaults
+HADOOP_VERSION=${HADOOP_VERSION:2.7.1}
