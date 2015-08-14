@@ -1,0 +1,8 @@
+Verified+2: Jenkins
+Code-Review+2: li,chen <chen.li@intel.com>
+Workflow+1: li,chen <chen.li@intel.com>
+Submitted-by: Jenkins
+Submitted-at: Fri, 14 Aug 2015 04:07:43 +0000
+Reviewed-on: https://review.openstack.org/212923
+Project: openstack/devstack-plugin-hdfs
+Branch: refs/heads/master
