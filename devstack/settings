@@ -3,5 +3,16 @@
 # We have to add hdfs to enabled services for screen_it to work
 enable_service hdfs
 
+# enable manila HDFS backend
+ENABLED_SHARE_PROTOCOLS="HDFS"
+MANILA_DEFAULT_SHARE_TYPE=hdfs_share
+MANILA_ENABLED_BACKENDS=hdfs1
+MANILA_CONFIGURE_GROUPS=hdfs1
+MANILA_OPTGROUP_hdfs1_share_driver=manila.share.drivers.hdfs.hdfs_native.HDFSNativeShareDriver
+MANILA_OPTGROUP_hdfs1_hdfs_namenode_ip=127.0.0.1
+MANILA_OPTGROUP_hdfs1_hdfs_namenode_port=9000
+MANILA_OPTGROUP_hdfs1_driver_handles_share_servers=False
+MANILA_OPTGROUP_hdfs1_share_backend_name=HDFS1
+
 # Below are HDFS specific settings, with their defaults
 HADOOP_VERSION=${HADOOP_VERSION:2.7.1}
