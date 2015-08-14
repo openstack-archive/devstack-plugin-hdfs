@@ -10,7 +10,7 @@ The plugin would configure HDFS, and configure Manila to use it as its backend.
 
 * Add this repo as an external repository to localrc::
 
-     [[local|localrc]]
+     [[local|localrc]]</br>
      enable_plugin hdfs https://github.com/openstack/devstack-plugin-hdfs
 
 * run "stack.sh"
