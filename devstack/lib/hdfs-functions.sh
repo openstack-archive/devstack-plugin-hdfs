@@ -57,10 +57,15 @@ function start_hdfs {
 # Stop running hdfs service
 # Triggered from devstack/plugin.sh as part of devstack "unstack"
 function stop_hdfs {
-    $HDFS_PLUGIN_HADOOP_DIR/sbin/stop-dfs.sh
-    rm -rf $HDFS_PLUGIN_HADOOP_DIR
+    if [[ -d $HDFS_PLUGIN_HADOOP_DIR ]]; then
+        $HDFS_PLUGIN_HADOOP_DIR/sbin/stop-dfs.sh
+        rm -rf $HDFS_PLUGIN_HADOOP_DIR
+    fi
+
     line=`grep -rn "export PATH=.*hadoop/bin" ~/.bashrc | awk -F: '{print $1}'`
-    sed -i "${line}d" ~/.bashrc
+    if [[ -n $line ]]; then
+        sed -i "${line}d" ~/.bashrc
+    fi
 }
 
 # Cleanup hdfs
