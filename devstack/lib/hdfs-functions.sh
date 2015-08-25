@@ -54,6 +54,13 @@ function start_hdfs {
     source ~/.bashrc
 }
 
+# test_hdfs() - Testing HDFS
+function test_hdfs {
+    cat ~/.bashrc
+    echo $PATH
+    hdfs fsck /
+}
+
 # Stop running hdfs service
 # Triggered from devstack/plugin.sh as part of devstack "unstack"
 function stop_hdfs {
