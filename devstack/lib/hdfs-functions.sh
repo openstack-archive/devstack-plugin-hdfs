@@ -7,13 +7,15 @@
 # Triggered from devstack/plugin.sh as part of devstack "install"
 function install_hdfs {
     # install nessary packages
-    install_package openssh-server expect
+    install_package openssh-server
 
     # Set ssh with no password
-    if [[ ! -e $DEST/.ssh/id_rsa.pub ]]; then
-        ssh-keygen -q -N '' -t rsa -f  $DEST/.ssh/id_rsa
+    if [[ ! -e ~/.ssh/id_rsa.pub ]]; then
+        ssh-keygen -q -N '' -t rsa -f  ~/.ssh/id_rsa
     fi
-    cat  $DEST/.ssh/id_rsa.pub >> $DEST/.ssh/authorized_keys
+    cat  ~/.ssh/id_rsa.pub >> ~/.ssh/authorized_keys
+    ssh-copy-id -i 127.0.0.1
+    ssh-copy-id -i 0.0.0.0
 
     if [[ -z $JAVA_HOME ]]; then
         install_package openjdk-7-jre openjdk-7-jdk
@@ -48,10 +50,20 @@ function configure_hdfs {
 # start_hdfs() - Start running processes
 function start_hdfs {
     # start
-    $HDFS_PLUGIN_LIB_DIR/start_hdfs.sh $HDFS_PLUGIN_HADOOP_DIR/sbin/start-dfs.sh
+    $HDFS_PLUGIN_HADOOP_DIR/sbin/start-dfs.sh
     # add hadoop/bin to PATH
     echo "export PATH=$PATH:$HDFS_PLUGIN_HADOOP_DIR/bin " >> ~/.bashrc
     source ~/.bashrc
+}
+
+# test_hdfs() - Testing HDFS
+function test_hdfs {
+    cat ~/.bashrc
+    echo $PATH
+    source ~/.bashrc
+    echo $PATH
+
+    hdfs fsck /
 }
 
 # Stop running hdfs service
