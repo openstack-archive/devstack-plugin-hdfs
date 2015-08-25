@@ -29,4 +29,8 @@
         <name>dfs.datanode.data.dir</name>
         <value>file:__PLACEHOLDER__/hadoop/tmp/dfs/data</value>
     </property>
+    <property>
+        <name>dfs.namenode.acls.enabled</name>
+        <value>true</value>
+    </property>
 </configuration>
