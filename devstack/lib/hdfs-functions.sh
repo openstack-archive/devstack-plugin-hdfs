@@ -10,10 +10,10 @@ function install_hdfs {
     install_package openssh-server expect
 
     # Set ssh with no password
-    if [[ ! -e $DEST/.ssh/id_rsa.pub ]]; then
-        ssh-keygen -q -N '' -t rsa -f  $DEST/.ssh/id_rsa
+    if [[ ! -e ~/.ssh/id_rsa.pub ]]; then
+        ssh-keygen -q -N '' -t rsa -f  ~/.ssh/id_rsa
     fi
-    cat  $DEST/.ssh/id_rsa.pub >> $DEST/.ssh/authorized_keys
+    cat  ~/.ssh/id_rsa.pub >> ~/.ssh/authorized_keys
 
     if [[ -z $JAVA_HOME ]]; then
         install_package openjdk-7-jre openjdk-7-jdk
@@ -36,10 +36,10 @@ function configure_hdfs {
     # edit core-site.xml & hdfs-site.xml
     cp $HDFS_PLUGIN_LIB_DIR/template/* $HDFS_PLUGIN_HADOOP_DIR/etc/hadoop/
 
-    path=${HDFS_PLUGIN_DIR//\//@}
+    path=${HDFS_PLUGIN_DIR//\//__slashplaceholder__}
 
     sed -i "s/__PLACEHOLDER__/$path/g" $HDFS_PLUGIN_HADOOP_DIR/etc/hadoop/hdfs-site.xml
-    sed -i 's/@/\//g' $HDFS_PLUGIN_HADOOP_DIR/etc/hadoop/hdfs-site.xml
+    sed -i 's/__slashplaceholder__/\//g' $HDFS_PLUGIN_HADOOP_DIR/etc/hadoop/hdfs-site.xml
 
     # formate namenode
     $HDFS_PLUGIN_HADOOP_DIR/bin/hdfs namenode -format
@@ -49,9 +49,25 @@ function configure_hdfs {
 function start_hdfs {
     # start
     $HDFS_PLUGIN_LIB_DIR/start_hdfs.sh $HDFS_PLUGIN_HADOOP_DIR/sbin/start-dfs.sh
+
     # add hadoop/bin to PATH
-    echo "export PATH=$PATH:$HDFS_PLUGIN_HADOOP_DIR/bin " >> ~/.bashrc
+    ori_path=$PATH:$HDFS_PLUGIN_HADOOP_DIR/bin
+    no_slash_path=${ori_path//\//__slashplaceholder__}
+    new_path=${no_slash_path//\:/__colonplaceholder__}
+    sed -i "1 s/^/PATH=${new_path}\n/" ~/.bashrc
+    sed -i 's/__slashplaceholder__/\//g'  ~/.bashrc
+    sed -i 's/__colonplaceholder__/\:/g'  ~/.bashrc
     source ~/.bashrc
+}
+
+# test_hdfs() - Testing HDFS
+function test_hdfs {
+    cat ~/.bashrc
+    echo $PATH
+    source ~/.bashrc
+    echo $PATH
+
+    hdfs fsck /
 }
 
 # Stop running hdfs service

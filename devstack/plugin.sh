@@ -34,6 +34,8 @@ if [[ "$1" == "stack" && "$2" == "pre-install" ]]; then
     configure_hdfs
     echo_summary "Starting HDFS"
     start_hdfs
+    echo_summary "Testing HDFS"
+    test_hdfs
 fi
 
 if [[ "$1" == "unstack" ]]; then
