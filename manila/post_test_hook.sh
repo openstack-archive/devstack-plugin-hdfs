@@ -37,9 +37,10 @@ iniset $BASE/new/tempest/etc/tempest.conf share share_creation_retry_number 2
 SUPPRESS_ERRORS=${SUPPRESS_ERRORS_IN_CLEANUP:-True}
 iniset $BASE/new/tempest/etc/tempest.conf share suppress_errors_in_cleanup $SUPPRESS_ERRORS
 
-# Disable multi_backend tests
-RUN_MANILA_MULTI_BACKEND_TESTS=${RUN_MANILA_MULTI_BACKEND_TESTS:-False}
+# Enable multi_backend tests
+RUN_MANILA_MULTI_BACKEND_TESTS=${RUN_MANILA_MULTI_BACKEND_TESTS:-True}
 iniset $BASE/new/tempest/etc/tempest.conf share multi_backend $RUN_MANILA_MULTI_BACKEND_TESTS
+iniset $BASE/new/tempest/etc/tempest.conf share backend_names $MANILA_ENABLED_BACKENDS
 
 # Disable manage/unmanage tests
 RUN_MANILA_MANAGE_TESTS=${RUN_MANILA_MANAGE_TESTS:-False}
