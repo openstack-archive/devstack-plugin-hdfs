@@ -21,8 +21,6 @@ echo "TEMPEST_SERVICES+=,manila" >> $localrc_path
 
 echo "MANILA_USE_DOWNGRADE_MIGRATIONS=True" >> $localrc_path
 
-echo "MANILA_MULTI_BACKEND=False" >> $localrc_path
-
 # Enabling isolated metadata in Neutron is required because
 # Tempest creates isolated networks and created vm's in scenario tests don't
 # have access to Nova Metadata service. This leads to unavailability of
