@@ -57,8 +57,8 @@ iniset $BASE/new/tempest/etc/tempest.conf share run_shrink_tests $RUN_MANILA_SHR
 # Disable multi_tenancy tests
 iniset $BASE/new/tempest/etc/tempest.conf share multitenancy_enabled False
 
-# Disable snapshot tests
-RUN_MANILA_SNAPSHOT_TESTS=${RUN_MANILA_SNAPSHOT_TESTS:-False}
+# Enable snapshot tests
+RUN_MANILA_SNAPSHOT_TESTS=${RUN_MANILA_SNAPSHOT_TESTS:-True}
 iniset $BASE/new/tempest/etc/tempest.conf share run_snapshot_tests $RUN_MANILA_SNAPSHOT_TESTS
 
 # Disable enable_ip_rules_for_protocols
