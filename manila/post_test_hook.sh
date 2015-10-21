@@ -47,7 +47,12 @@ RUN_MANILA_MANAGE_TESTS=${RUN_MANILA_MANAGE_TESTS:-False}
 iniset $BASE/new/tempest/etc/tempest.conf share run_manage_unmanage_tests $RUN_MANILA_MANAGE_TESTS
 
 # Disable extend tests
-RUN_MANILA_EXTEND_TESTS=${RUN_MANILA_EXTEND_TESTS:-True}
+if [ $ZUUL_BRANCH = "master" ]
+then
+    RUN_MANILA_EXTEND_TESTS=${RUN_MANILA_EXTEND_TESTS:-True}
+else
+    RUN_MANILA_EXTEND_TESTS=${RUN_MANILA_EXTEND_TESTS:-False}
+fi
 iniset $BASE/new/tempest/etc/tempest.conf share run_extend_tests $RUN_MANILA_EXTEND_TESTS
 
 # Disable shrink tests
