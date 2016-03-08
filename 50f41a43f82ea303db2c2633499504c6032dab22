@@ -1,0 +1,9 @@
+Code-Review+2: Ben Swartzlander <ben@swartzlander.org>
+Code-Review+2: Valeriy Ponomaryov <vponomaryov@mirantis.com>
+Workflow+1: Ben Swartzlander <ben@swartzlander.org>
+Verified+2: Jenkins
+Submitted-by: Jenkins
+Submitted-at: Tue, 08 Mar 2016 02:32:40 +0000
+Reviewed-on: https://review.openstack.org/264277
+Project: openstack/devstack-plugin-hdfs
+Branch: refs/heads/master
