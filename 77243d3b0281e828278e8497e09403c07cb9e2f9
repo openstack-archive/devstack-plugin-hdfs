@@ -1,0 +1,11 @@
+Code-Review+1: Ramana Raja <rraja@redhat.com>
+Code-Review+2: Thomas Bechtold <tbechtold@suse.com>
+Code-Review+2: Mark Sturdevant <mark.sturdevant@hpe.com>
+Code-Review+2: Rodrigo Barbieri <rodrigo.barbieri2010@gmail.com>
+Workflow+1: Rodrigo Barbieri <rodrigo.barbieri2010@gmail.com>
+Verified+2: Jenkins
+Submitted-by: Jenkins
+Submitted-at: Wed, 06 Apr 2016 13:52:52 +0000
+Reviewed-on: https://review.openstack.org/301595
+Project: openstack/devstack-plugin-hdfs
+Branch: refs/heads/master
