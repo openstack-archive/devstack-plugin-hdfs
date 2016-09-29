@@ -16,9 +16,9 @@ function install_hdfs {
     cat  ~/.ssh/id_rsa.pub >> ~/.ssh/authorized_keys
 
     if [[ -z $JAVA_HOME ]]; then
-        install_package openjdk-7-jre openjdk-7-jdk
+        install_package openjdk-8-jre openjdk-8-jdk
         # Export JAVA_HOME
-        sed -i '1 s/^/export JAVA_HOME=\/usr\/lib\/jvm\/java-7-openjdk-amd64\n/' ~/.bashrc
+        sed -i '1 s/^/export JAVA_HOME=\/usr\/lib\/jvm\/java-8-openjdk-amd64\n/' ~/.bashrc
         source ~/.bashrc
     fi
 
