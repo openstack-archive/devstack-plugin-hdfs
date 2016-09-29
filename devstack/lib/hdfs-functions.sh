@@ -16,9 +16,17 @@ function install_hdfs {
     cat  ~/.ssh/id_rsa.pub >> ~/.ssh/authorized_keys
 
     if [[ -z $JAVA_HOME ]]; then
-        install_package openjdk-7-jre openjdk-7-jdk
+        if is_ubuntu; then
+            if [[ $(lsb_release -s -d) == *"14.04"* ]]; then
+                JAVA_VERSION=7
+            elif [[ $(lsb_release -s -d) == *"16.04"* ]]; then
+                JAVA_VERSION=8
+            fi
+        fi
+        JAVA_VERSION=${JAVA_VERSION:-7}
+        install_package openjdk-${JAVA_VERSION}-jre openjdk-${JAVA_VERSION}-jdk
         # Export JAVA_HOME
-        sed -i '1 s/^/export JAVA_HOME=\/usr\/lib\/jvm\/java-7-openjdk-amd64\n/' ~/.bashrc
+        sed -i "1 s/^/export JAVA_HOME=\/usr\/lib\/jvm\/java-${JAVA_VERSION}-openjdk-amd64\n/" ~/.bashrc
         source ~/.bashrc
     fi
 
