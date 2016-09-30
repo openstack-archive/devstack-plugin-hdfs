@@ -1,0 +1,9 @@
+Code-Review+2: Tom Barron <tpb@dyncloud.net>
+Code-Review+2: xing-yang <xing.yang@emc.com>
+Workflow+1: xing-yang <xing.yang@emc.com>
+Verified+2: Jenkins
+Submitted-by: Jenkins
+Submitted-at: Fri, 30 Sep 2016 18:38:46 +0000
+Reviewed-on: https://review.openstack.org/379617
+Project: openstack/devstack-plugin-hdfs
+Branch: refs/heads/master
