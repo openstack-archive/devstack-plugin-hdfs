@@ -9,6 +9,7 @@ MANILA_DEFAULT_SHARE_TYPE=hdfs_share
 
 MANILA_ENABLED_BACKENDS=hdfs1,hdfs2
 MANILA_CONFIGURE_GROUPS=hdfs1,hdfs2
+MANILA_DEFAULT_SHARE_TYPE_EXTRA_SPECS="'snapshot_support=True create_share_from_snapshot_support=True'"
 
 MANILA_OPTGROUP_hdfs1_share_driver=manila.share.drivers.hdfs.hdfs_native.HDFSNativeShareDriver
 MANILA_OPTGROUP_hdfs1_hdfs_namenode_ip=127.0.0.1
