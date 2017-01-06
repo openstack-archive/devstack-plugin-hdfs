@@ -1,0 +1,9 @@
+Code-Review+2: Ben Swartzlander <ben@swartzlander.org>
+Code-Review+2: Tom Barron <tpb@dyncloud.net>
+Workflow+1: Tom Barron <tpb@dyncloud.net>
+Verified+2: Jenkins
+Submitted-by: Jenkins
+Submitted-at: Fri, 06 Jan 2017 16:57:56 +0000
+Reviewed-on: https://review.openstack.org/395003
+Project: openstack/devstack-plugin-hdfs
+Branch: refs/heads/master
