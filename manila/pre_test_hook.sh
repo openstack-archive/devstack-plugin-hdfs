@@ -14,21 +14,23 @@
 
 # This script is executed inside pre_test_hook function in devstack gate.
 
-localrc_path=$BASE/new/devstack/localrc
-echo "DEVSTACK_GATE_TEMPEST_ALLOW_TENANT_ISOLATION=1" >> $localrc_path
-echo "API_RATE_LIMIT=False" >> $localrc_path
-echo "TEMPEST_SERVICES+=,manila" >> $localrc_path
+localconf=$BASE/new/devstack/local.conf
 
-echo "MANILA_USE_DOWNGRADE_MIGRATIONS=True" >> $localrc_path
+echo "[[local|localrc]]" >> $localconf
+echo "DEVSTACK_GATE_TEMPEST_ALLOW_TENANT_ISOLATION=1" >> $localconf
+echo "API_RATE_LIMIT=False" >> $localconf
+echo "TEMPEST_SERVICES+=,manila" >> $localconf
+
+echo "MANILA_USE_DOWNGRADE_MIGRATIONS=True" >> $localconf
 
 # NOTE(vponomaryov): enable following only for 'scenario' tests if such added.
-echo "MANILA_SERVICE_IMAGE_ENABLED=False" >> $localrc_path
+echo "MANILA_SERVICE_IMAGE_ENABLED=False" >> $localconf
 
 # Enabling isolated metadata in Neutron is required because
 # Tempest creates isolated networks and created vm's in scenario tests don't
 # have access to Nova Metadata service. This leads to unavailability of
 # created vm's in scenario tests.
-echo 'ENABLE_ISOLATED_METADATA=True' >> $localrc_path
+echo 'ENABLE_ISOLATED_METADATA=True' >> $localconf
 
 # Go to Tempest dir and checkout stable commit to avoid possible
 # incompatibilities for plugin stored in Manila repo.
