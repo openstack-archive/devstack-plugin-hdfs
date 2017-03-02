@@ -1,0 +1,9 @@
+Code-Review+2: Goutham Pacha Ravi <gouthampravi@gmail.com>
+Workflow+1: Goutham Pacha Ravi <gouthampravi@gmail.com>
+Code-Review+1: Mark Sturdevant <mark.sturdevant@ibm.com>
+Verified+2: Jenkins
+Submitted-by: Jenkins
+Submitted-at: Thu, 02 Mar 2017 23:57:28 +0000
+Reviewed-on: https://review.openstack.org/438658
+Project: openstack/devstack-plugin-hdfs
+Branch: refs/heads/master
