@@ -1,0 +1,9 @@
+Code-Review+2: Goutham Pacha Ravi <gouthampravi@gmail.com>
+Code-Review+2: xing-yang <xing.yang@emc.com>
+Workflow+1: Goutham Pacha Ravi <gouthampravi@gmail.com>
+Verified+2: Jenkins
+Submitted-by: Jenkins
+Submitted-at: Thu, 24 Aug 2017 17:40:45 +0000
+Reviewed-on: https://review.openstack.org/495387
+Project: openstack/devstack-plugin-hdfs
+Branch: refs/heads/master
