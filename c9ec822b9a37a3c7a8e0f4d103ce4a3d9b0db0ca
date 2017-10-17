@@ -1,0 +1,8 @@
+Code-Review+2: Tom Barron <tpb@dyncloud.net>
+Workflow+1: Tom Barron <tpb@dyncloud.net>
+Verified+2: Zuul
+Submitted-by: Zuul
+Submitted-at: Tue, 17 Oct 2017 15:55:42 +0000
+Reviewed-on: https://review.openstack.org/512570
+Project: openstack/devstack-plugin-hdfs
+Branch: refs/heads/master
