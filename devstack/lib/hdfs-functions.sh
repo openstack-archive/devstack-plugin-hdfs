@@ -24,9 +24,16 @@ function install_hdfs {
             fi
         fi
         JAVA_VERSION=${JAVA_VERSION:-7}
-        install_package openjdk-${JAVA_VERSION}-jre openjdk-${JAVA_VERSION}-jdk
-        # Export JAVA_HOME
-        sed -i "1 s/^/export JAVA_HOME=\/usr\/lib\/jvm\/java-${JAVA_VERSION}-openjdk-amd64\n/" ~/.bashrc
+	if is_ubuntu; then
+            install_package openjdk-${JAVA_VERSION}-jre openjdk-${JAVA_VERSION}-jdk
+            # Export JAVA_HOME
+            sed -i "1 s/^/export JAVA_HOME=\/usr\/lib\/jvm\/java-${JAVA_VERSION}-openjdk-amd64\n/" ~/.bas
+        else # works for CentOS 7.4
+            install_package java-1.8.0-openjdk
+            ln -s /usr/lib/jvm/jre-1.8.0-openjdk /usr/lib/jvm/jre-1.8.0-openjdk.x86_64
+            # Export JAVA_HOME
+            sed -i "1 s/^/export JAVA_HOME=\/usr\/lib\/jvm\/jre-1.8.0-openjdk\n/" ~/.bashrc
+        fi
         source ~/.bashrc
     fi
 
