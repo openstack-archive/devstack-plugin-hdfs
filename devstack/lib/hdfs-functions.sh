@@ -27,7 +27,7 @@ function install_hdfs {
         if is_ubuntu; then
             install_package openjdk-${JAVA_VERSION}-jre openjdk-${JAVA_VERSION}-jdk
             # Export JAVA_HOME
-            sed -i "1 s/^/export JAVA_HOME=\/usr\/lib\/jvm\/java-${JAVA_VERSION}-openjdk-amd64\n/" ~/.bas
+            sed -i "1 s/^/export JAVA_HOME=\/usr\/lib\/jvm\/java-${JAVA_VERSION}-openjdk-amd64\n/" ~/.bashrc
         else # works for CentOS 7.4
             install_package java-1.8.0-openjdk
             ln -s /usr/lib/jvm/jre-1.8.0-openjdk /usr/lib/jvm/jre-1.8.0-openjdk.x86_64
@@ -44,6 +44,15 @@ function install_hdfs {
     # untar the package
     tar -zxf $HDFS_PLUGIN_DIR/hadoop-$HADOOP_VERSION.tar.gz -C $HDFS_PLUGIN_DIR/
     mv $HDFS_PLUGIN_DIR/hadoop-$HADOOP_VERSION $HDFS_PLUGIN_DIR/hadoop
+
+    # Make a /usr/local/bin/hdfs command that will work from the driver without special env settings
+    if is_ubuntu; then
+        echo -e "#bin/bash\nexport JAVA_HOME=/usr/lib/jvm/java-${JAVA_VERSION}-openjdk-amd64\n/"| sudo tee /usr/local/bin/hdfs
+    else # works for CentOS 7.4
+        echo -e "#bin/bash\nexport JAVA_HOME=/usr/lib/jvm/jre-1.8.0-openjdk\n" | sudo tee /usr/local/bin/hdfs
+    fi
+    echo -e "$HDFS_PLUGIN_HADOOP_DIR/bin/hdfs $* \n" | sudo tee -a /usr/local/bin/hdfs
+    sudo chmod 755 /usr/local/bin/hdfs
 }
 
 # configure_hdfs() - Set config files, create data dirs, etc
@@ -56,7 +65,7 @@ function configure_hdfs {
     sed -i "s/__PLACEHOLDER__/$path/g" $HDFS_PLUGIN_HADOOP_DIR/etc/hadoop/hdfs-site.xml
     sed -i 's/__slashplaceholder__/\//g' $HDFS_PLUGIN_HADOOP_DIR/etc/hadoop/hdfs-site.xml
 
-    # formate namenode
+    # format namenode
     $HDFS_PLUGIN_HADOOP_DIR/bin/hdfs namenode -format
 }
 
