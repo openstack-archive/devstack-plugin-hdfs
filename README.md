@@ -1,16 +1,3 @@
-# devstack-plugin-hdfs
-The plugin would configure HDFS, and configure Manila to use it as its backend.
+# This repo has moved to OpenDev
 
-# Goals
-
-* To install HDFS packages
-* Configures Manila with HDFS backend
-
-# How to use
-
-* Add this repo as an external repository to localrc::
-
-     [[local|localrc]]</br>
-     enable_plugin hdfs https://github.com/openstack/devstack-plugin-hdfs
-
-* run "stack.sh"
+It can now be found at [https://opendev.org/x/devstack-plugin-hdfs](https://opendev.org/x/devstack-plugin-hdfs)
